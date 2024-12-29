@@ -1,16 +1,18 @@
-
+import s from "./searchBar.module.css";
+import { GoSearch } from "react-icons/go";
 
 const SearchBar = () => {
   return (
-  <header>
-  <form>
+  <header className={s.header}>
+  <form className={s.form}>
     <input
       type="text"
       autocomplete="off"
       autofocus
-      placeholder="Search images and photos"
+                  placeholder="Search images and photos"
+                  className={s.input}
     />
-    <button type="submit">Search</button>
+    <button className={s.search} type="submit"><GoSearch /></button>
   </form>
 </header>
   )
