@@ -8,7 +8,6 @@ import Loader from './components/Loader/Loader'
 import SearchBar from './components/SearchBar/SearchBar'
 import { fetchPictures } from './services/api'
 import LoadMoreBtn from './components/LoadMoreBtn/LoadMoreBtn'
-import toast from 'react-hot-toast'
 
 
 function App() {
@@ -18,6 +17,10 @@ function App() {
   const [isError, setIsError] = useState(false);
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedPic, setSelectedPic] = useState('');
+ 
+
 
   useEffect(() => {
     const getPictures = async () => {
@@ -57,14 +60,26 @@ function App() {
     setPage(prev => prev + 1)
   };
 
+  const openModal = (urlLarge) => {
+    setIsModalOpen(true);
+    setSelectedPic(urlLarge);
+    
+  }
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedPic('');
+   
+  }
+
   return (
 
     <> 
       <SearchBar onSearch={handleChangeQuery} />
-      {pictures.length > 0 && <ImageGallery pictures={pictures} />}
+      {pictures.length > 0 && <ImageGallery pictures={pictures} openModal={openModal} />}
       {isLoading && <Loader />}
       {isError && <ErrorMessage />}
-      <ImageModal/>
+      {isModalOpen && <ImageModal picture={selectedPic} onClose={closeModal}/>}
       {pictures.length > 0 && <LoadMoreBtn onClick={handleChangePage} />}
     </>
   )
