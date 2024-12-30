@@ -1,14 +1,14 @@
-import React from 'react'
 
-const ImageGallery = () => {
+
+const ImageGallery = ( {pictures} ) => {
   return (
     <ul>
-	{/* Набір елементів списку із зображеннями */}
-	<li>
+		  {pictures.map(picture => (<li key={picture.id}>
 		<div>
-		  <img src="" alt="" />
+		  <img src={picture.urls.small} alt={picture.description} />
 		</div>
-	</li>
+	</li> ))}
+	
 </ul>
   )
 }
