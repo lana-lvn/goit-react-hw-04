@@ -23,6 +23,7 @@ function App() {
 
 
   useEffect(() => {
+
     const getPictures = async () => {
       if (!query.trim()) {
         return;
@@ -44,7 +45,10 @@ function App() {
     };
 
 
-    getPictures();
+    if (query !== "") {
+      getPictures();
+    }
+    
   }, [query, page]);
 
   const handleChangeQuery = (newQuery) => {
