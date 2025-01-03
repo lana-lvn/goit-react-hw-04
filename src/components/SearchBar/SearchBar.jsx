@@ -8,11 +8,12 @@ const SearchBar = ({ onSearch }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(value)
 
     if (!value.trim()) {
       return toast.error('Enter a valid query, please');
     }
+
+    onSearch(value);
   };
   return (
   <header className={s.header}>
